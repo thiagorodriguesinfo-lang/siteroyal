@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     @apply text-gray-800 antialiased;
@@ -15,26 +13,46 @@
   }
 
   h1, h2, h3 {
-    @apply font-display;
     font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
 @layer components {
+
+  /* ─── BUTTONS ─────────────────────────────────────────────────────── */
+
   .btn-primary {
-    @apply bg-vinho-700 hover:bg-vinho-800 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2 shadow-md hover:shadow-lg;
+    @apply bg-vinho-700 hover:bg-vinho-800 text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 inline-flex items-center gap-2 shadow-sm hover:shadow-md;
+  }
+
+  .btn-red {
+    @apply bg-verde-600 hover:bg-verde-700 text-white font-bold px-8 py-4 rounded-xl
+           transition-all duration-200 inline-flex items-center gap-2
+           shadow-lg hover:shadow-xl hover:scale-[1.02];
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-vinho-700 border-2 border-vinho-700 font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2;
+    @apply bg-white hover:bg-gray-50 text-vinho-700 border-2 border-vinho-200
+           hover:border-vinho-700 font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 inline-flex items-center gap-2;
   }
 
   .btn-outline-white {
-    @apply border-2 border-white text-white hover:bg-white hover:text-vinho-700 font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2;
+    @apply border-2 border-white/40 hover:border-white text-white
+           hover:bg-white/10 font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 inline-flex items-center gap-2;
   }
 
-  .btn-green {
-    @apply bg-verde-700 hover:bg-verde-800 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2 shadow-md hover:shadow-lg;
+  .btn-ghost {
+    @apply text-gray-600 hover:text-vinho-700 font-medium px-4 py-2 rounded-lg
+           hover:bg-gray-50 transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  /* ─── TYPOGRAPHY ──────────────────────────────────────────────────── */
+
+  .section-label {
+    @apply text-verde-600 font-bold text-xs tracking-[0.18em] uppercase;
   }
 
   .section-title {
@@ -42,125 +60,175 @@
     font-family: 'Playfair Display', Georgia, serif;
   }
 
-  .section-subtitle {
-    @apply text-lg text-gray-600 mt-4 leading-relaxed;
+  .section-title-white {
+    @apply text-3xl md:text-4xl font-bold text-white leading-tight;
+    font-family: 'Playfair Display', Georgia, serif;
   }
+
+  .section-subtitle {
+    @apply text-lg text-gray-500 mt-4 leading-relaxed;
+  }
+
+  /* ─── CARDS ───────────────────────────────────────────────────────── */
 
   .card {
-    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200;
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden
+           hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300;
   }
 
+  .card-navy {
+    @apply bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm;
+  }
+
+  /* ─── FORM FIELDS ─────────────────────────────────────────────────── */
+
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-vinho-700 focus:border-transparent text-gray-800 placeholder-gray-400 transition-all;
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl bg-white
+           focus:outline-none focus:ring-2 focus:ring-vinho-700/20 focus:border-vinho-700
+           text-gray-800 placeholder-gray-400 transition-all;
   }
 
   .select-field {
-    @apply w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-vinho-700 focus:border-transparent text-gray-800 bg-white transition-all;
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl bg-white
+           focus:outline-none focus:ring-2 focus:ring-vinho-700/20 focus:border-vinho-700
+           text-gray-800 transition-all;
   }
+
+  /* ─── MISC ────────────────────────────────────────────────────────── */
 
   .tag {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-red {
+    @apply inline-flex items-center gap-1.5 bg-verde-600 text-white
+           text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full;
+  }
+
+  .badge-navy {
+    @apply inline-flex items-center gap-1.5 bg-vinho-700 text-white
+           text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full;
+  }
+
+  .divider-red {
+    @apply w-12 h-[3px] bg-verde-600 rounded-full;
+  }
+
+  .divider-red-center {
+    @apply w-12 h-[3px] bg-verde-600 rounded-full mx-auto;
   }
 }
 
-/* ── Hero banner — animações de entrada ────────────────────────────────── */
-@keyframes hero-logo-in {
-  0%   { transform: scale(0.72); opacity: 0; filter: blur(8px); }
-  60%  { transform: scale(1.04); opacity: 1; filter: blur(0); }
-  100% { transform: scale(1);    opacity: 1; filter: blur(0); }
+/* ═══════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════════════════ */
+
+@keyframes slide-in-left {
+  from { transform: translateX(-48px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
 }
-@keyframes hero-text-in {
-  0%   { transform: translateY(24px); opacity: 0; }
-  100% { transform: translateY(0);    opacity: 1; }
+
+@keyframes fade-up {
+  from { transform: translateY(32px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
-@keyframes hero-ring {
-  0%   { transform: scale(1);   opacity: 0.55; }
-  100% { transform: scale(2.8); opacity: 0; }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
+
 @keyframes hero-line-grow {
-  0%   { width: 0;    opacity: 0; }
-  100% { width: 80px; opacity: 1; }
-}
-@keyframes hero-scroll-bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50%       { transform: translateY(6px); opacity: 1; }
-}
-@keyframes particle-float {
-  0%   { transform: translateY(0)   translateX(0)    scale(1);   opacity: 0; }
-  15%  { opacity: 0.6; }
-  85%  { opacity: 0.3; }
-  100% { transform: translateY(-140px) translateX(20px) scale(0.5); opacity: 0; }
+  from { width: 0;    opacity: 0; }
+  to   { width: 56px; opacity: 1; }
 }
 
-.hero-logo-in  { animation: hero-logo-in 1.1s cubic-bezier(0.22,1,0.36,1) forwards; }
-.hero-text-in  { opacity: 0; animation: hero-text-in 0.85s ease-out forwards; }
-.hero-ring     { animation: hero-ring 2.8s ease-out infinite; }
-.hero-ring-2   { animation: hero-ring 2.8s 1.4s ease-out infinite; }
-.hero-line     { width: 0; animation: hero-line-grow 0.8s 0.6s ease-out forwards; }
-.hero-scroll   { animation: hero-scroll-bounce 1.8s ease-in-out infinite; }
-
-/* ── Logo pulsante no banner ────────────────────────────────────────────── */
-@keyframes logo-breathe {
-  0%, 100% { transform: scale(1);    }
-  50%       { transform: scale(1.05); }
-}
-@keyframes logo-glow-pulse {
-  0%, 100% { opacity: 0.15; transform: scale(1);    }
-  50%       { opacity: 0.32; transform: scale(1.12); }
-}
-@keyframes ring-breathe {
-  0%, 100% { opacity: 0.18; transform: scale(1);    }
-  50%       { opacity: 0.38; transform: scale(1.06); }
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0);   opacity: 0.4; }
+  50%       { transform: translateY(8px); opacity: 0.9; }
 }
 
-.logo-pulse      { animation: logo-breathe    3.8s ease-in-out infinite; }
-.logo-glow-ring  { animation: logo-glow-pulse 3.8s ease-in-out infinite; }
-.ring-breathe    { animation: ring-breathe    3.8s ease-in-out infinite; }
-.ring-breathe-2  { animation: ring-breathe    3.8s 1.9s ease-in-out infinite; }
-
-/* ── Header CTA destaque ────────────────────────────────────────────────── */
-@keyframes cta-shine {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200%  center; }
-}
-
-/* Marquee infinito — seção de fornecedores */
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee 35s linear infinite;
+
+@keyframes cta-shine {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
 }
-.animate-marquee:hover {
-  animation-play-state: paused;
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
+
+/* Utility animation classes */
+.anim-slide-left { animation: slide-in-left 0.85s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-fade-up    { animation: fade-up 0.85s cubic-bezier(0.22,1,0.36,1) both; opacity: 0; }
+.anim-fade-in    { animation: fade-in 0.7s ease-out both; opacity: 0; }
+.hero-line       { width: 0; animation: hero-line-grow 0.9s 0.5s ease-out forwards; }
+.hero-scroll     { animation: scroll-bounce 2s ease-in-out infinite; }
+
+/* Marquee */
+.animate-marquee       { animation: marquee 42s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Legacy aliases — kept for existing components */
+.hero-logo-in  { animation: fade-up 1s ease-out both; }
+.hero-text-in  { opacity: 0; animation: fade-up 0.85s ease-out both; }
+.logo-pulse    {}
+.logo-glow-ring {}
+.ring-breathe   {}
+.ring-breathe-2 {}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GLOBAL ELEMENTS
+═══════════════════════════════════════════════════════════════════════ */
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { @apply bg-gray-100; }
-::-webkit-scrollbar-thumb { @apply bg-vinho-700 rounded-full; }
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #1B2A6B; border-radius: 3px; }
 
 /* Hero gradient overlay */
 .hero-overlay {
-  background: linear-gradient(135deg, rgba(139,26,26,0.90) 0%, rgba(27,77,46,0.80) 100%);
+  background: linear-gradient(
+    110deg,
+    rgba(27,42,107,0.97) 0%,
+    rgba(27,42,107,0.88) 40%,
+    rgba(27,42,107,0.55) 65%,
+    rgba(15,22,60,0.25)  100%
+  );
 }
 
-/* Gold accent underline */
-.gold-underline::after {
+/* Accent underlines — red brand color */
+.gold-underline::after,
+.red-underline::after {
   content: '';
   display: block;
-  width: 60px;
+  width: 48px;
   height: 3px;
-  background: #D4AF37;
-  margin-top: 12px;
+  background: #E31E24;
+  margin-top: 14px;
+  border-radius: 2px;
 }
 
-.gold-underline-center::after {
+.gold-underline-center::after,
+.red-underline-center::after {
   content: '';
   display: block;
-  width: 60px;
+  width: 48px;
   height: 3px;
-  background: #D4AF37;
-  margin: 12px auto 0;
+  background: #E31E24;
+  margin: 14px auto 0;
+  border-radius: 2px;
+}
+
+/* Section background grid */
+.bg-grid-navy {
+  background-image:
+    linear-gradient(rgba(27,42,107,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27,42,107,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
 }

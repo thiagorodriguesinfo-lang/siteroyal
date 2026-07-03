@@ -1,69 +1,78 @@
-﻿import { Link } from 'react-router-dom'
-import { ArrowRight, CheckCircle, ShoppingBag, Truck } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, BarChart3, CheckCircle, MapPin, Package, ShoppingCart, Star, Truck } from 'lucide-react'
+
+const WA = 'https://wa.me/5521996643765'
 
 const highlights = [
-  'Mix completo de bovinos, aves, suínos, embutidos e pescados',
-  'Produtos com maior giro para o balcão',
-  'Cortes especiais para venda no balcão e gôndola',
-  'Produtos para churrasco e datas sazonais',
-  'Embutidos e congelados de alta saída',
-  'Atendimento comercial especializado',
-  'Logística pontual e regularidade de abastecimento',
-  'Suporte para montagem do mix ideal',
+  { icon: Package,      title: 'Mix completo',            description: 'Bovinos, suínos, aves, embutidos, congelados e pescados em um único fornecedor.' },
+  { icon: ShoppingCart, title: 'Produtos de giro rápido', description: 'Itens de alta rotatividade para aumentar suas vendas e reduzir desperdício.' },
+  { icon: Truck,        title: 'Entrega programada',      description: 'Entregas de segunda a sábado com janelas definidas para facilitar seu recebimento.' },
+  { icon: BarChart3,    title: 'Suporte comercial',       description: 'Representante dedicado para ajudar na formação de mix ideal para o seu público.' },
 ]
 
-const categories = [
+const checklistItems = [
+  'Cortes bovinos para balcão e gôndola',
+  'Frango inteiro, partes e cortes',
+  'Linha de suínos e embutidos',
+  'Pescados e frutos do mar',
+  'Congelados e semi-prontos',
+  'Produtos de marca própria',
+  'Produtos a granel e embalados',
+  'Linha premium e cortes especiais',
+]
+
+const products = [
   {
-    label: 'Bovinos para balcão',
-    items: ['Picanha', 'Alcatra', 'Filé mignon', 'Cupim', 'Fraldinha', 'Carne moída', 'Músculo'],
+    category: 'Açougues',
+    icon: '🥩',
+    items: ['Traseiro bovino', 'Dianteiro bovino', 'Carne moída', 'Fraldinha', 'Picanha', 'Costela'],
   },
   {
-    label: 'Aves',
-    items: ['Frango inteiro', 'Coxa e sobrecoxa', 'Filé de frango', 'Coração', 'Moela'],
+    category: 'Mercados',
+    icon: '🏪',
+    items: ['Bandeja para gôndola', 'Embutidos fatiados', 'Salsicha e linguiça', 'Frango partes', 'Congelados'],
   },
   {
-    label: 'Suínos e embutidos',
-    items: ['Bisteca', 'Costela suína', 'Linguiça calabresa', 'Linguiça toscana', 'Presunto'],
-  },
-  {
-    label: 'Congelados e pescados',
-    items: ['Hambúrguer', 'Nuggets', 'Tilápia', 'Merluza', 'Camarão'],
+    category: 'Distribuidores',
+    icon: '🚛',
+    items: ['Caixas padronizadas', 'Volume por palete', 'Produtos exclusivos', 'Mix personalizado'],
   },
 ]
 
 export default function Varejo() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-28 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1400&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-verde-900/90 to-verde-900/50" />
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-verde-700 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-              Varejo e Distribuição
-            </div>
+      {/* ── HERO ──────────────────────────────────────────────────── */}
+      <section className="relative flex items-center overflow-hidden" style={{ minHeight: '600px' }}>
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1600&q=80"
+            alt=""
+            aria-hidden
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 hero-overlay" />
+        </div>
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-verde-600" />
+
+        <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-36 w-full">
+          <div className="max-w-xl">
+            <span className="badge-navy mb-6 inline-flex">Varejo &amp; Distribuição</span>
             <h1
-              className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"
+              className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              Mix completo para quem<br />
-              vende proteínas todos os dias
+              O mix certo para<br />
+              o seu negócio crescer
             </h1>
+            <div className="w-12 h-[3px] bg-verde-600 rounded-full mb-6" />
             <p className="text-white/70 text-lg leading-relaxed mb-8">
-              A Royal Alimentos abastece mercados, açougues, hortifrutis, empórios
-              e distribuidores com o portfólio certo para o seu ponto de venda.
+              Proteínas de qualidade para açougues, mercados e distribuidores —
+              com variedade, pontualidade e preço competitivo.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/seja-cliente" className="btn-primary">
-                Quero ser cliente
-                <ArrowRight size={16} />
+            <div className="flex flex-wrap gap-4">
+              <Link to="/seja-cliente" className="btn-red">
+                Quero ser cliente <ArrowRight size={16} />
               </Link>
               <Link to="/produtos" className="btn-outline-white">
                 Ver catálogo
@@ -73,88 +82,127 @@ export default function Varejo() {
         </div>
       </section>
 
-      {/* Benefícios */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="section-title gold-underline mb-6">
-                O que a Royal Alimentos oferece para o varejo
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Entendemos que o varejo precisa de produtos com giro, cortes que
-                vendem no balcão e um fornecedor que entrega com pontualidade.
-                É exatamente isso que entregamos.
-              </p>
-              <div className="space-y-3">
-                {highlights.map((h) => (
-                  <div key={h} className="flex items-start gap-3">
-                    <CheckCircle size={17} className="text-verde-700 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm">{h}</span>
-                  </div>
-                ))}
+      {/* ── DIFERENCIAIS ──────────────────────────────────────────── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="max-w-xl mb-16">
+            <span className="section-label">Nossos diferenciais</span>
+            <h2 className="section-title mt-3">Por que escolher a Royal para o seu varejo?</h2>
+            <div className="divider-red mt-4" />
+            <p className="section-subtitle">
+              Mais do que produto — entregamos suporte, parceria e consistência
+              para o seu negócio prosperar.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {highlights.map((h) => (
+              <div
+                key={h.title}
+                className="p-7 rounded-2xl border border-gray-100 hover:border-vinho-200
+                           hover:shadow-lg transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-vinho-700 group-hover:bg-verde-600 rounded-xl
+                               flex items-center justify-center mb-5 transition-colors duration-300">
+                  <h.icon size={20} className="text-white" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  {h.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{h.description}</p>
               </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/seja-cliente" className="btn-primary">
-                  Seja cliente
-                  <ArrowRight size={16} />
-                </Link>
-                <a
-                  href="https://wa.me/5500000000000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                >
-                  Fale com representante
-                </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── O QUE TRABALHAMOS ─────────────────────────────────────── */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <div className="relative">
+              <img
+                src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=750&q=80"
+                alt="Açougue moderno"
+                className="rounded-3xl shadow-2xl w-full object-cover aspect-[4/3]"
+              />
+              <div className="absolute -bottom-5 -left-5 bg-vinho-700 rounded-2xl px-7 py-6 shadow-2xl hidden md:block">
+                <div className="text-white text-center">
+                  <div
+                    className="text-3xl font-bold"
+                    style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                  >
+                    92+
+                  </div>
+                  <div className="text-white/70 text-xs uppercase tracking-wider mt-1">Municípios<br />atendidos</div>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <img
-                src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80"
-                alt="Carnes no balcão"
-                className="rounded-2xl object-cover aspect-square w-full"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80"
-                alt="Cortes especiais"
-                className="rounded-2xl object-cover aspect-square w-full mt-8"
-              />
+            <div>
+              <span className="section-label">Portfólio</span>
+              <h2 className="section-title mt-3 mb-4">
+                Um mix que atende do balcão ao depósito
+              </h2>
+              <div className="divider-red mb-8" />
+              <p className="text-gray-600 leading-relaxed mb-8">
+                Trabalhamos com toda a cadeia de proteínas para que você possa centralizar
+                suas compras, reduzir fornecedores e ganhar eficiência.
+              </p>
+              <div className="grid grid-cols-2 gap-3 mb-10">
+                {checklistItems.map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <div className="w-5 h-5 bg-verde-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle size={12} className="text-white" />
+                    </div>
+                    <span className="text-sm text-gray-700 font-medium leading-snug">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <Link to="/produtos" className="btn-primary">
+                Ver todos os produtos <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Produtos */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="section-title gold-underline-center">
-              Produtos para Varejo
+      {/* ── SEGMENTOS / PRODUTOS ──────────────────────────────────── */}
+      <section className="py-24 bg-vinho-700">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="text-center mb-14">
+            <span className="text-white/50 font-bold text-xs tracking-[0.18em] uppercase">Segmentos</span>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-white mt-3"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            >
+              Produtos por segmento
             </h2>
-            <p className="section-subtitle max-w-xl mx-auto">
-              Cortes e categorias que vendem no balcão e na gôndola.
+            <div className="w-12 h-[3px] bg-verde-600 rounded-full mx-auto mt-4 mb-4" />
+            <p className="text-white/60 max-w-md mx-auto">
+              Cada cliente tem um perfil diferente. Por isso, organizamos
+              nosso mix para facilitar a sua escolha.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {categories.map((cat) => (
+          <div className="grid sm:grid-cols-3 gap-5">
+            {products.map((seg) => (
               <div
-                key={cat.label}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+                key={seg.category}
+                className="bg-white/10 hover:bg-white/15 border border-white/15 rounded-2xl p-7
+                           transition-all duration-200 backdrop-blur-sm"
               >
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-2 h-6 bg-verde-700 rounded-full" />
-                  <h3 className="font-bold text-gray-900 text-sm"
-                    style={{ fontFamily: 'Inter, sans-serif' }}>
-                    {cat.label}
+                <div className="text-3xl mb-4">{seg.icon}</div>
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-1.5 h-7 bg-verde-600 rounded-full" />
+                  <h3 className="font-bold text-white text-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+                    {seg.category}
                   </h3>
                 </div>
-                <ul className="space-y-2">
-                  {cat.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
-                      <span className="w-1 h-1 bg-gray-400 rounded-full flex-shrink-0" />
+                <ul className="space-y-2.5">
+                  {seg.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-white/65">
+                      <span className="w-1 h-1 bg-verde-400 rounded-full flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -162,73 +210,107 @@ export default function Varejo() {
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <Link to="/produtos" className="btn-secondary">
-              Ver catálogo completo
-              <ArrowRight size={16} />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Distribuição */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-gray-900 rounded-3xl p-10 grid lg:grid-cols-2 gap-10 items-center">
+      {/* ── ÁREA DE ATUAÇÃO ───────────────────────────────────────── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
-              <div className="w-12 h-12 bg-vinho-700 rounded-xl flex items-center justify-center mb-6">
-                <Truck size={22} className="text-white" />
-              </div>
-              <h2
-                className="text-3xl font-bold text-white mb-4"
-                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-              >
-                Distribuidores
+              <span className="section-label">Cobertura</span>
+              <h2 className="section-title mt-3 mb-4">
+                Entregamos em todo o estado do Rio de Janeiro
               </h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                Para distribuidores que atendem múltiplos pontos de venda,
-                a Royal Alimentos oferece volume, variedade, logística confiável
-                e suporte comercial dedicado.
+              <div className="divider-red mb-8" />
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Nossa frota refrigerada cobre mais de 92 municípios do Rio de Janeiro,
+                de segunda a sábado, com rastreamento em tempo real e segurança em cada entrega.
               </p>
-              <Link to="/seja-cliente" className="btn-primary">
-                Quero ser distribuidor
-                <ArrowRight size={16} />
-              </Link>
+              <div className="space-y-3 mb-10">
+                {[
+                  'Capital e Grande Rio',
+                  'Baixada Fluminense',
+                  'Interior do estado',
+                  'Região Serrana',
+                ].map((r) => (
+                  <div key={r} className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-vinho-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin size={14} className="text-white" />
+                    </div>
+                    <span className="text-gray-700 font-medium">{r}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href={WA}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Consultar disponibilidade <ArrowRight size={16} />
+              </a>
             </div>
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1586816001966-79b736744398?w=600&q=80"
-                alt="Logística e distribuição"
-                className="rounded-2xl object-cover w-full aspect-[4/3]"
-              />
+
+            <div className="bg-slate-50 rounded-3xl p-10 flex flex-col gap-7">
+              {[
+                { icon: Star,        label: 'Frota 100% refrigerada', desc: 'Garantia de cadeia do frio do início ao fim da entrega.' },
+                { icon: Truck,       label: 'Gerenciadora de Risco',  desc: 'Rastreamento 24h e escolta nas operações de entrega.' },
+                { icon: CheckCircle, label: 'Entrega pontual',        desc: 'Compromisso com a janela de horário combinada.' },
+              ].map((item) => (
+                <div key={item.label} className="flex items-start gap-4">
+                  <div className="w-11 h-11 bg-vinho-700 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <item.icon size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+                      {item.label}
+                    </div>
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-verde-700">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <ShoppingBag size={28} className="text-white" />
-          </div>
+      {/* ── CTA DARK ──────────────────────────────────────────────── */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1400&q=80"
+            alt=""
+            aria-hidden
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gray-950/88" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-6 text-center">
+          <span className="text-verde-400 font-bold text-xs tracking-[0.2em] uppercase">Próximo passo</span>
           <h2
-            className="text-3xl font-bold text-white mb-4"
+            className="text-3xl md:text-4xl font-bold text-white mt-4 mb-4"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
-            Variedade, procedência e atendimento de verdade.
+            Vamos trabalhar juntos?
           </h2>
-          <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
-            Cadastre seu negócio e receba uma proposta personalizada para o seu ponto de venda.
+          <p className="text-white/65 text-lg mb-8 max-w-lg mx-auto">
+            Cadastre sua empresa e um representante vai montar o mix ideal
+            para o perfil do seu negócio.
           </p>
-          <Link
-            to="/seja-cliente"
-            className="bg-white text-verde-700 hover:bg-gray-50 font-semibold px-8 py-3.5 rounded-lg transition-all inline-flex items-center gap-2 shadow-lg hover:shadow-xl text-base"
-          >
-            Cadastrar minha empresa
-            <ArrowRight size={18} />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/seja-cliente" className="btn-red">
+              Quero ser cliente <ArrowRight size={18} />
+            </Link>
+            <a
+              href={WA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-white"
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </>

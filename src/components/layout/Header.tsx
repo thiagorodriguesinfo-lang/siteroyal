@@ -137,18 +137,18 @@ export default function Header() {
           </Link>
           <Link
             to="/seja-cliente"
-            className="relative overflow-hidden text-sm font-bold text-white px-6 py-2.5 rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg shadow-md"
+            className="relative overflow-hidden text-sm font-bold text-white px-6 py-2.5 rounded-xl
+                       transition-all duration-200 hover:scale-105 hover:shadow-lg shadow-md"
             style={{
-              background: 'linear-gradient(135deg, #1B2A6B 0%, #2a3f9a 50%, #1B2A6B 100%)',
+              background: 'linear-gradient(135deg, #E31E24 0%, #c0191e 50%, #E31E24 100%)',
               backgroundSize: '200% auto',
-              boxShadow: '0 4px 14px rgba(27,42,107,0.4)',
+              boxShadow: '0 4px 14px rgba(227,30,36,0.35)',
             }}
           >
             <span
               className="absolute inset-0 pointer-events-none"
               style={{
-                background:
-                  'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%)',
+                background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%)',
                 backgroundSize: '200% auto',
                 animation: 'cta-shine 2.8s linear infinite',
               }}
@@ -226,10 +226,10 @@ export default function Header() {
               </Link>
               <Link
                 to="/seja-cliente"
-                className="justify-center text-sm font-bold text-white px-6 py-3 rounded-lg text-center"
+                className="justify-center text-sm font-bold text-white px-6 py-3 rounded-xl text-center"
                 style={{
-                  background: 'linear-gradient(135deg, #1B2A6B 0%, #2a3f9a 100%)',
-                  boxShadow: '0 4px 14px rgba(27,42,107,0.35)',
+                  background: 'linear-gradient(135deg, #E31E24 0%, #c0191e 100%)',
+                  boxShadow: '0 4px 14px rgba(227,30,36,0.3)',
                 }}
               >
                 ✦ Seja Cliente
