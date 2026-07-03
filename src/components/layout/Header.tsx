@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown, Headset } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, Headset, Sparkles } from 'lucide-react'
 
 const navLinks = [
   { to: '/', label: 'Início' },
@@ -123,38 +123,58 @@ export default function Header() {
         {/* CTA buttons */}
         <div className="hidden lg:flex items-center gap-2">
           <Link to="/trabalhe-conosco"
-            className="text-sm font-medium text-gray-600 hover:text-vinho-700 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all">
+            className="text-sm font-medium text-gray-500 hover:text-vinho-700 px-3 py-2 rounded-full hover:bg-vinho-50/70 transition-all duration-200">
             Trabalhe Conosco
           </Link>
+
           <Link to="/central-atendimento"
-            className="flex items-center gap-1.5 text-sm font-medium text-verde-700 border-2 border-verde-200 hover:border-verde-600 px-4 py-2.5 rounded-lg transition-all duration-200 hover:bg-verde-50">
-            <Headset size={15} />
+            className="group flex items-center gap-1.5 text-sm font-semibold text-verde-700 px-4 py-2.5 rounded-full
+                       border border-verde-600/25 bg-verde-50/50 backdrop-blur-sm
+                       transition-all duration-300 ease-out
+                       hover:border-verde-600/60 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(227,30,36,0.4)]">
+            <Headset size={15} className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_6px_rgba(227,30,36,0.6)]" />
             Central de Atendimento
           </Link>
+
           <Link to="/representante-comercial"
-            className="text-sm font-semibold text-vinho-700 border-2 border-vinho-200 hover:border-vinho-600 px-4 py-2.5 rounded-lg transition-all duration-200 hover:bg-vinho-50">
+            className="group flex items-center gap-1.5 text-sm font-semibold text-vinho-700 px-4 py-2.5 rounded-full
+                       border border-vinho-600/25 bg-vinho-50/50 backdrop-blur-sm
+                       transition-all duration-300 ease-out
+                       hover:border-vinho-600/60 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(27,42,107,0.4)]">
             Seja Representante
           </Link>
-          <Link
-            to="/seja-cliente"
-            className="relative overflow-hidden text-sm font-bold text-white px-6 py-2.5 rounded-xl
-                       transition-all duration-200 hover:scale-105 hover:shadow-lg shadow-md"
-            style={{
-              background: 'linear-gradient(135deg, #E31E24 0%, #c0191e 50%, #E31E24 100%)',
-              backgroundSize: '200% auto',
-              boxShadow: '0 4px 14px rgba(227,30,36,0.35)',
-            }}
-          >
+
+          <div className="relative group">
             <span
-              className="absolute inset-0 pointer-events-none"
+              aria-hidden="true"
+              className="absolute -inset-1 rounded-full blur-md pointer-events-none transition-opacity duration-300 opacity-50 group-hover:opacity-90"
               style={{
-                background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%)',
-                backgroundSize: '200% auto',
-                animation: 'cta-shine 2.8s linear infinite',
+                background: 'linear-gradient(120deg, #1B2A6B, #E31E24)',
+                animation: 'pulse-glow 2.6s ease-in-out infinite',
               }}
             />
-            <span className="relative z-10">✦ Seja Cliente</span>
-          </Link>
+            <Link
+              to="/seja-cliente"
+              className="relative overflow-hidden flex items-center gap-1.5 text-sm font-bold text-white pl-5 pr-6 py-2.5 rounded-full
+                         transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03]"
+              style={{
+                background: 'linear-gradient(120deg, #1B2A6B 0%, #25338e 45%, #E31E24 100%)',
+                boxShadow: '0 4px 20px -4px rgba(227,30,36,0.45), inset 0 0 0 1px rgba(255,255,255,0.12)',
+              }}
+            >
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%)',
+                  backgroundSize: '200% auto',
+                  animation: 'cta-shine 2.8s linear infinite',
+                }}
+              />
+              <Sparkles size={15} className="relative z-10" />
+              <span className="relative z-10">Seja Cliente</span>
+            </Link>
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -210,30 +230,50 @@ export default function Header() {
                 </NavLink>
               )
             )}
-            <div className="pt-3 flex flex-col gap-2 border-t border-gray-100 mt-2">
+            <div className="pt-3 flex flex-col gap-2.5 border-t border-gray-100 mt-2">
               <Link to="/central-atendimento"
-                className="flex items-center justify-center gap-1.5 text-sm font-medium text-verde-700 border-2 border-verde-200 px-4 py-2.5 rounded-lg text-center hover:bg-verde-50 transition-all">
+                className="flex items-center justify-center gap-1.5 text-sm font-semibold text-verde-700 border border-verde-600/25 bg-verde-50/50 backdrop-blur-sm px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:border-verde-600/60 hover:shadow-[0_6px_16px_-4px_rgba(227,30,36,0.35)]">
                 <Headset size={15} />
                 Central de Atendimento
               </Link>
               <Link to="/representante-comercial"
-                className="justify-center text-sm font-semibold text-vinho-700 border-2 border-vinho-200 px-4 py-2.5 rounded-lg text-center hover:bg-vinho-50 transition-all">
+                className="flex items-center justify-center text-sm font-semibold text-vinho-700 border border-vinho-600/25 bg-vinho-50/50 backdrop-blur-sm px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:border-vinho-600/60 hover:shadow-[0_6px_16px_-4px_rgba(27,42,107,0.35)]">
                 Seja Representante
               </Link>
               <Link to="/trabalhe-conosco"
-                className="justify-center text-sm font-medium text-gray-600 border border-gray-200 px-4 py-2.5 rounded-lg text-center hover:bg-gray-50 transition-all">
+                className="flex items-center justify-center text-sm font-medium text-gray-500 border border-gray-200 px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:text-vinho-700 hover:bg-vinho-50/70">
                 Trabalhe Conosco
               </Link>
-              <Link
-                to="/seja-cliente"
-                className="justify-center text-sm font-bold text-white px-6 py-3 rounded-xl text-center"
-                style={{
-                  background: 'linear-gradient(135deg, #E31E24 0%, #c0191e 100%)',
-                  boxShadow: '0 4px 14px rgba(227,30,36,0.3)',
-                }}
-              >
-                ✦ Seja Cliente
-              </Link>
+              <div className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute -inset-1 rounded-full blur-md pointer-events-none opacity-60"
+                  style={{
+                    background: 'linear-gradient(120deg, #1B2A6B, #E31E24)',
+                    animation: 'pulse-glow 2.6s ease-in-out infinite',
+                  }}
+                />
+                <Link
+                  to="/seja-cliente"
+                  className="relative overflow-hidden flex items-center justify-center gap-1.5 text-sm font-bold text-white px-6 py-3 rounded-full text-center"
+                  style={{
+                    background: 'linear-gradient(120deg, #1B2A6B 0%, #25338e 45%, #E31E24 100%)',
+                    boxShadow: '0 4px 20px -4px rgba(227,30,36,0.45), inset 0 0 0 1px rgba(255,255,255,0.12)',
+                  }}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%)',
+                      backgroundSize: '200% auto',
+                      animation: 'cta-shine 2.8s linear infinite',
+                    }}
+                  />
+                  <Sparkles size={15} className="relative z-10" />
+                  <span className="relative z-10">Seja Cliente</span>
+                </Link>
+              </div>
               <Link to="/area-cliente" className="btn-secondary justify-center text-sm">
                 Área do Cliente
               </Link>

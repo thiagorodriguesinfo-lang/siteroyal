@@ -163,6 +163,11 @@
   100% { transform: scale(1.8); opacity: 0; }
 }
 
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.08); }
+}
+
 /* Utility animation classes */
 .anim-slide-left { animation: slide-in-left 0.85s cubic-bezier(0.22,1,0.36,1) both; }
 .anim-fade-up    { animation: fade-up 0.85s cubic-bezier(0.22,1,0.36,1) both; opacity: 0; }
