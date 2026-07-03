@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown, Headset, Sparkles } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, Headset, Sparkles, Crown } from 'lucide-react'
 
 const navLinks = [
   { to: '/', label: 'Início' },
@@ -22,6 +22,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const location = useLocation()
+  const isSegmentActive = location.pathname === '/food-service' || location.pathname === '/varejo'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -60,30 +61,43 @@ export default function Header() {
 
       {/* Main nav */}
       <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center select-none">
-          <img
-            src="/logo.png"
-            alt="Royal Alimentos"
-            className="h-14 w-auto"
-          />
+        {/* Logo — lockup recriado em código (coroa + tipografia), identidade preservada */}
+        <Link to="/" className="flex items-center gap-2 select-none shrink-0" aria-label="Royal Alimentos — página inicial">
+          <Crown size={28} strokeWidth={2} className="text-verde-600 shrink-0" />
+          <span className="flex flex-col leading-none">
+            <span
+              className="text-vinho-700 font-bold text-xl tracking-tight leading-none whitespace-nowrap"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            >
+              ROYAL
+            </span>
+            <span className="text-verde-600 font-semibold text-[10px] tracking-[0.22em] uppercase leading-none mt-1 whitespace-nowrap">
+              Alimentos
+            </span>
+          </span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden xl:flex items-center gap-0.5 2xl:gap-1">
+        <div className="hidden xl:flex items-center gap-0 2xl:gap-1">
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label} className="relative">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="group relative flex items-center gap-1 px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-vinho-700 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
+                  className={`group relative flex items-center gap-1 px-2 py-2 text-[13px] font-semibold uppercase tracking-normal rounded-lg transition-colors whitespace-nowrap ${
+                    isSegmentActive
+                      ? 'text-vinho-700 bg-vinho-50'
+                      : 'text-gray-700 hover:text-vinho-700 hover:bg-gray-50'
+                  }`}
                 >
                   {link.label}
                   <ChevronDown size={14} className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                   <span
                     aria-hidden="true"
-                    className="absolute left-2.5 right-2.5 bottom-1 h-[2px] bg-verde-600 rounded-full origin-left
-                               scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
+                    className={`absolute left-2.5 right-2.5 bottom-1 h-[2px] bg-verde-600 rounded-full origin-left
+                               transition-transform duration-300 ease-out ${
+                                 isSegmentActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                               }`}
                   />
                 </button>
                 {dropdownOpen && (
@@ -112,33 +126,39 @@ export default function Header() {
                 to={link.to!}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `group relative px-2.5 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
+                  `group relative px-2 py-2 text-[13px] font-semibold uppercase tracking-normal rounded-lg transition-colors whitespace-nowrap ${
                     isActive
                       ? 'text-vinho-700 bg-vinho-50'
                       : 'text-gray-700 hover:text-vinho-700 hover:bg-gray-50'
                   }`
                 }
               >
-                {link.label}
-                <span
-                  aria-hidden="true"
-                  className="absolute left-2.5 right-2.5 bottom-1 h-[2px] bg-verde-600 rounded-full origin-left
-                             scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
-                />
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute left-2.5 right-2.5 bottom-1 h-[2px] bg-verde-600 rounded-full origin-left
+                                 transition-transform duration-300 ease-out ${
+                                   isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                                 }`}
+                    />
+                  </>
+                )}
               </NavLink>
             )
           )}
         </div>
 
         {/* CTA buttons */}
-        <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2">
+        <div className="hidden xl:flex items-center gap-1 2xl:gap-2">
           <Link to="/trabalhe-conosco"
-            className="hidden 2xl:inline-flex text-sm font-medium text-gray-500 hover:text-vinho-700 px-3 py-2 rounded-full hover:bg-vinho-50/70 transition-all duration-200 whitespace-nowrap">
+            className="hidden 2xl:inline-flex text-xs font-bold uppercase text-gray-500 hover:text-vinho-700 px-3 py-2 rounded-full hover:bg-vinho-50/70 transition-all duration-200 whitespace-nowrap">
             Trabalhe Conosco
           </Link>
 
           <Link to="/central-atendimento"
-            className="group flex items-center gap-1.5 text-sm font-semibold text-verde-700 px-3.5 py-2.5 rounded-full
+            className="group flex items-center gap-1.5 text-xs font-bold uppercase text-verde-700 px-2.5 py-2.5 rounded-full
                        border border-verde-600/25 bg-verde-50/50 backdrop-blur-sm
                        transition-all duration-300 ease-out whitespace-nowrap
                        hover:border-verde-600/60 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(227,30,36,0.4)]">
@@ -147,7 +167,7 @@ export default function Header() {
           </Link>
 
           <Link to="/representante-comercial"
-            className="group flex items-center gap-1.5 text-sm font-semibold text-vinho-700 px-3.5 py-2.5 rounded-full
+            className="group flex items-center gap-1.5 text-xs font-bold uppercase text-vinho-700 px-2.5 py-2.5 rounded-full
                        border border-vinho-600/25 bg-vinho-50/50 backdrop-blur-sm
                        transition-all duration-300 ease-out whitespace-nowrap
                        hover:border-vinho-600/60 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(27,42,107,0.4)]">
@@ -165,7 +185,7 @@ export default function Header() {
             />
             <Link
               to="/seja-cliente"
-              className="relative overflow-hidden flex items-center gap-1.5 text-sm font-bold text-white pl-5 pr-6 py-2.5 rounded-full
+              className="relative overflow-hidden flex items-center gap-1.5 text-xs font-bold uppercase text-white pl-4 pr-5 py-2.5 rounded-full
                          transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] whitespace-nowrap"
               style={{
                 background: 'linear-gradient(120deg, #1B2A6B 0%, #25338e 45%, #E31E24 100%)',
@@ -229,10 +249,10 @@ export default function Header() {
                   to={link.to!}
                   end={link.to === '/'}
                   className={({ isActive }) =>
-                    `block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                    `block px-3 py-2.5 text-sm font-semibold uppercase tracking-wide rounded-lg transition-colors ${
                       isActive
-                        ? 'text-vinho-700 bg-vinho-50'
-                        : 'text-gray-700 hover:text-vinho-700 hover:bg-gray-50'
+                        ? 'text-vinho-700 bg-vinho-50 border-l-2 border-verde-600'
+                        : 'text-gray-700 hover:text-vinho-700 hover:bg-gray-50 border-l-2 border-transparent'
                     }`
                   }
                 >
@@ -242,16 +262,16 @@ export default function Header() {
             )}
             <div className="pt-3 flex flex-col gap-2.5 border-t border-gray-100 mt-2">
               <Link to="/central-atendimento"
-                className="flex items-center justify-center gap-1.5 text-sm font-semibold text-verde-700 border border-verde-600/25 bg-verde-50/50 backdrop-blur-sm px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:border-verde-600/60 hover:shadow-[0_6px_16px_-4px_rgba(227,30,36,0.35)]">
+                className="flex items-center justify-center gap-1.5 text-sm font-bold uppercase tracking-wide text-verde-700 border border-verde-600/25 bg-verde-50/50 backdrop-blur-sm px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:border-verde-600/60 hover:shadow-[0_6px_16px_-4px_rgba(227,30,36,0.35)]">
                 <Headset size={15} />
                 Central de Atendimento
               </Link>
               <Link to="/representante-comercial"
-                className="flex items-center justify-center text-sm font-semibold text-vinho-700 border border-vinho-600/25 bg-vinho-50/50 backdrop-blur-sm px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:border-vinho-600/60 hover:shadow-[0_6px_16px_-4px_rgba(27,42,107,0.35)]">
+                className="flex items-center justify-center text-sm font-bold uppercase tracking-wide text-vinho-700 border border-vinho-600/25 bg-vinho-50/50 backdrop-blur-sm px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:border-vinho-600/60 hover:shadow-[0_6px_16px_-4px_rgba(27,42,107,0.35)]">
                 Seja Representante
               </Link>
               <Link to="/trabalhe-conosco"
-                className="flex items-center justify-center text-sm font-medium text-gray-500 border border-gray-200 px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:text-vinho-700 hover:bg-vinho-50/70">
+                className="flex items-center justify-center text-sm font-bold uppercase tracking-wide text-gray-500 border border-gray-200 px-4 py-2.5 rounded-full text-center transition-all duration-300 hover:text-vinho-700 hover:bg-vinho-50/70">
                 Trabalhe Conosco
               </Link>
               <div className="relative">
@@ -265,7 +285,7 @@ export default function Header() {
                 />
                 <Link
                   to="/seja-cliente"
-                  className="relative overflow-hidden flex items-center justify-center gap-1.5 text-sm font-bold text-white px-6 py-3 rounded-full text-center"
+                  className="relative overflow-hidden flex items-center justify-center gap-1.5 text-sm font-bold uppercase tracking-wide text-white px-6 py-3 rounded-full text-center"
                   style={{
                     background: 'linear-gradient(120deg, #1B2A6B 0%, #25338e 45%, #E31E24 100%)',
                     boxShadow: '0 4px 20px -4px rgba(227,30,36,0.45), inset 0 0 0 1px rgba(255,255,255,0.12)',

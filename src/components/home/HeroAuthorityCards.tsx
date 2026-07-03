@@ -18,7 +18,7 @@ const items: AuthorityItem[] = [
   {
     icon: Award,
     title: 'Qualidade Premium',
-    description: 'Produtos selecionados',
+    description: 'Produtos selecionados e certificados',
   },
   {
     icon: Layers,
@@ -27,14 +27,14 @@ const items: AuthorityItem[] = [
   },
   {
     icon: Handshake,
-    title: 'Confiança',
-    description: 'Parceiro do seu negócio',
+    title: 'Confiança e Tradição',
+    description: 'Parceria de verdade com o seu negócio',
   },
 ]
 
 /**
- * Área de autoridade do Hero: 4 cards glassmorphism destacando os
- * principais pilares de confiança da Royal Alimentos.
+ * Área de autoridade do Hero: barra única com os 4 pilares de confiança
+ * da Royal Alimentos, separados por divisórias finas.
  */
 export default function HeroAuthorityCards() {
   return (
@@ -42,22 +42,24 @@ export default function HeroAuthorityCards() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1.5, ease: EASE }}
-      className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"
+      className="grid grid-cols-2 lg:grid-cols-4 border border-white/15 rounded-2xl bg-white/[0.03] backdrop-blur-sm overflow-hidden"
     >
-      {items.map((item) => (
+      {items.map((item, i) => (
         <div
           key={item.title}
-          className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl
-                     p-4 md:p-5 flex flex-col gap-3 hover:bg-white/[0.14] transition-colors duration-300"
+          className={`flex items-center gap-3 p-4 md:p-5 transition-colors duration-300 hover:bg-white/[0.05]
+                      ${i % 2 === 1 ? 'border-l border-white/10' : ''}
+                      ${i >= 2 ? 'border-t border-white/10 lg:border-t-0' : ''}
+                      ${i > 0 ? 'lg:border-l lg:border-t-0' : ''}`}
         >
-          <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-verde-600/15 flex items-center justify-center">
-            <item.icon size={18} className="text-verde-600" />
+          <div className="w-10 h-10 rounded-full border-2 border-verde-600 flex items-center justify-center shrink-0 bg-transparent">
+            <item.icon size={17} className="text-verde-600" />
           </div>
           <div>
             <div className="font-bold text-white text-sm md:text-base leading-snug">
               {item.title}
             </div>
-            <div className="text-white/60 text-xs mt-1 leading-relaxed">
+            <div className="text-white/60 text-xs mt-0.5 leading-relaxed">
               {item.description}
             </div>
           </div>

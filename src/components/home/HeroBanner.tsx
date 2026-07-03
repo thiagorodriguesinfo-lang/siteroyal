@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown, History, Truck, Layers } from 'lucide-react'
+import { ArrowRight, Mouse, History, Truck, Layers } from 'lucide-react'
 import { calcYearsInBusiness } from '../../utils/yearsCalc'
 import HeroAuthorityCards from './HeroAuthorityCards'
 
@@ -65,9 +65,9 @@ export default function HeroBanner() {
 
       {/* ── Conteúdo principal ────────────────────────────────────── */}
       <div className="relative z-10 flex-1 flex items-center">
-        {/* Scroll indicator — ancorado à área de conteúdo, acima dos cards de autoridade */}
-        <div className="absolute bottom-4 right-10 hidden xl:flex flex-col items-center gap-2 z-10">
-          <ChevronDown size={18} className="hero-scroll text-white/40" />
+        {/* Scroll indicator — mouse centralizado, acima dos cards de autoridade */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden xl:flex flex-col items-center gap-2 z-10">
+          <Mouse size={22} strokeWidth={1.5} className="hero-scroll text-white/40" />
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32 lg:py-36 w-full">
           <div className="max-w-[680px] mx-auto lg:mx-0 text-center lg:text-left">
