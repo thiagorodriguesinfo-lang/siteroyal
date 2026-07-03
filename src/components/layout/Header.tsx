@@ -13,7 +13,7 @@ const navLinks = [
       { to: '/varejo', label: 'Varejo e Distribuição' },
     ],
   },
-  { to: '/calculadora', label: 'Calcule seu churrasco' },
+  { to: '/calculadora', label: 'Calculadora' },
   { to: '/contato', label: 'Contato' },
 ]
 
@@ -70,13 +70,13 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden xl:flex items-center gap-0.5 2xl:gap-1">
           {navLinks.map((link) =>
             link.children ? (
               <div key={link.label} className="relative">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-vinho-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-1 px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-vinho-700 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
                 >
                   {link.label}
                   <ChevronDown size={14} className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
@@ -107,7 +107,7 @@ export default function Header() {
                 to={link.to!}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  `px-2.5 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
                     isActive
                       ? 'text-vinho-700 bg-vinho-50'
                       : 'text-gray-700 hover:text-vinho-700 hover:bg-gray-50'
@@ -121,30 +121,30 @@ export default function Header() {
         </div>
 
         {/* CTA buttons */}
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2">
           <Link to="/trabalhe-conosco"
-            className="text-sm font-medium text-gray-500 hover:text-vinho-700 px-3 py-2 rounded-full hover:bg-vinho-50/70 transition-all duration-200">
+            className="hidden 2xl:inline-flex text-sm font-medium text-gray-500 hover:text-vinho-700 px-3 py-2 rounded-full hover:bg-vinho-50/70 transition-all duration-200 whitespace-nowrap">
             Trabalhe Conosco
           </Link>
 
           <Link to="/central-atendimento"
-            className="group flex items-center gap-1.5 text-sm font-semibold text-verde-700 px-4 py-2.5 rounded-full
+            className="group flex items-center gap-1.5 text-sm font-semibold text-verde-700 px-3.5 py-2.5 rounded-full
                        border border-verde-600/25 bg-verde-50/50 backdrop-blur-sm
-                       transition-all duration-300 ease-out
+                       transition-all duration-300 ease-out whitespace-nowrap
                        hover:border-verde-600/60 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(227,30,36,0.4)]">
-            <Headset size={15} className="transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_6px_rgba(227,30,36,0.6)]" />
+            <Headset size={15} className="shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_6px_rgba(227,30,36,0.6)]" />
             Central de Atendimento
           </Link>
 
           <Link to="/representante-comercial"
-            className="group flex items-center gap-1.5 text-sm font-semibold text-vinho-700 px-4 py-2.5 rounded-full
+            className="group flex items-center gap-1.5 text-sm font-semibold text-vinho-700 px-3.5 py-2.5 rounded-full
                        border border-vinho-600/25 bg-vinho-50/50 backdrop-blur-sm
-                       transition-all duration-300 ease-out
+                       transition-all duration-300 ease-out whitespace-nowrap
                        hover:border-vinho-600/60 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-6px_rgba(27,42,107,0.4)]">
             Seja Representante
           </Link>
 
-          <div className="relative group">
+          <div className="relative group shrink-0">
             <span
               aria-hidden="true"
               className="absolute -inset-1 rounded-full blur-md pointer-events-none transition-opacity duration-300 opacity-50 group-hover:opacity-90"
@@ -156,7 +156,7 @@ export default function Header() {
             <Link
               to="/seja-cliente"
               className="relative overflow-hidden flex items-center gap-1.5 text-sm font-bold text-white pl-5 pr-6 py-2.5 rounded-full
-                         transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03]"
+                         transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.03] whitespace-nowrap"
               style={{
                 background: 'linear-gradient(120deg, #1B2A6B 0%, #25338e 45%, #E31E24 100%)',
                 boxShadow: '0 4px 20px -4px rgba(227,30,36,0.45), inset 0 0 0 1px rgba(255,255,255,0.12)',
@@ -171,7 +171,7 @@ export default function Header() {
                   animation: 'cta-shine 2.8s linear infinite',
                 }}
               />
-              <Sparkles size={15} className="relative z-10" />
+              <Sparkles size={15} className="relative z-10 shrink-0" />
               <span className="relative z-10">Seja Cliente</span>
             </Link>
           </div>
@@ -180,7 +180,7 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+          className="xl:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
           aria-label="Menu"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -189,7 +189,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div className="xl:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) =>
               link.children ? (
