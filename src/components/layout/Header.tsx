@@ -43,7 +43,7 @@ export default function Header() {
       }`}
     >
       {/* Top bar */}
-      <div className="bg-vinho-700 text-white text-xs py-2 hidden md:block">
+      <div className="bg-vinho-700 text-white text-xs py-2 hidden md:block anim-fade-in-down">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <span className="text-white/80">Distribuição de proteínas para varejo, food service e distribuição</span>
           <a
@@ -76,10 +76,15 @@ export default function Header() {
               <div key={link.label} className="relative">
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-1 px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-vinho-700 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
+                  className="group relative flex items-center gap-1 px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-vinho-700 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap"
                 >
                   {link.label}
                   <ChevronDown size={14} className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-2.5 right-2.5 bottom-1 h-[2px] bg-verde-600 rounded-full origin-left
+                               scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
+                  />
                 </button>
                 {dropdownOpen && (
                   <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-50">
@@ -107,7 +112,7 @@ export default function Header() {
                 to={link.to!}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `px-2.5 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
+                  `group relative px-2.5 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
                     isActive
                       ? 'text-vinho-700 bg-vinho-50'
                       : 'text-gray-700 hover:text-vinho-700 hover:bg-gray-50'
@@ -115,6 +120,11 @@ export default function Header() {
                 }
               >
                 {link.label}
+                <span
+                  aria-hidden="true"
+                  className="absolute left-2.5 right-2.5 bottom-1 h-[2px] bg-verde-600 rounded-full origin-left
+                             scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"
+                />
               </NavLink>
             )
           )}
