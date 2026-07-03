@@ -1,0 +1,826 @@
+import type { Product } from '../types';
+
+// ── Imagens por categoria (URLs Unsplash verificadas) ──────────────────────
+
+// Bovinos — bifes e cortes sem osso
+const IMG_STEAK_HERBS   = 'https://images.unsplash.com/photo-1448907503123-67254d59ca4f?w=600&q=80' // bife cru com ervas
+const IMG_STEAK_GRILLED = 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80' // bife grelhado
+const IMG_STEAK_BBQ     = 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80' // churrasco/assado
+const IMG_STEAK_NOBLE   = 'https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80'   // corte nobre grelhado
+const IMG_BEEF_RAW      = 'https://images.unsplash.com/photo-1611599538835-b52a4d5e2834?w=600&q=80' // carne bovina crua
+const IMG_BEEF_CUT      = 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80' // corte bovino
+const IMG_GROUND_BEEF   = 'https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80'   // carne moída
+
+// Bovinos — costelas
+const IMG_RIBS_GRILL    = 'https://images.unsplash.com/photo-1679711246825-1f2bd51b16d0?w=600&q=80' // costela na grelha
+const IMG_RIBS_ROASTED  = 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80'   // costela assada
+
+// Bovinos — miúdos e charque
+const IMG_OFFAL         = 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80' // miúdos/vísceras
+const IMG_JERKY         = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80'   // carne seca/charque
+
+// Aves — frango
+const IMG_CHICKEN_BREAST = 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600&q=80' // filé de frango
+const IMG_CHICKEN_PIECES = 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&q=80' // pedaços de frango
+const IMG_CHICKEN_WHOLE  = 'https://images.unsplash.com/photo-1501200291289-c5a76c232e5f?w=600&q=80' // frango inteiro/asas
+const IMG_CHICKEN_DARK   = 'https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=600&q=80' // coxa/sobrecoxa
+
+// Suínos
+const IMG_PORK_CHOP   = 'https://images.unsplash.com/photo-1652209898504-ea7f96b44580?w=600&q=80' // bisteca suína
+const IMG_PORK_RAW    = 'https://images.unsplash.com/photo-1611059263765-f57653f3bba3?w=600&q=80' // suíno cru em bandeja
+const IMG_PORK_ROAST  = 'https://images.unsplash.com/photo-1612871689527-2a6145cc9e86?w=600&q=80' // pernil assado
+const IMG_PORK_LOIN   = 'https://images.unsplash.com/photo-1602491950780-1c5411ecfdf6?w=600&q=80' // lombo cru
+
+// Embutidos
+const IMG_SAUSAGE_RED   = 'https://images.unsplash.com/photo-1691480241974-92481cef09ff?w=600&q=80' // linguiças com tomate
+const IMG_SAUSAGE_TRAY  = 'https://images.unsplash.com/photo-1624772398061-bbfa87ec6b5a?w=600&q=80' // linguiças na bandeja
+const IMG_SAUSAGE_PLATE = 'https://images.unsplash.com/photo-1624772398066-98584aa2f214?w=600&q=80' // salsicha no prato
+const IMG_HAM_CURED     = 'https://images.unsplash.com/photo-1609518317991-10acee259279?w=600&q=80' // presunto/bacon
+
+// Pescados
+const IMG_FISH_FILLET = 'https://images.unsplash.com/photo-1544943910-4c1dc44aab44?w=600&q=80' // filé de peixe
+const IMG_FISH_WHOLE  = 'https://images.unsplash.com/photo-1510130387422-82bed34b37e9?w=600&q=80' // peixe inteiro
+const IMG_FISH_WHITE  = 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=600&q=80' // peixe branco
+const IMG_SHRIMP      = 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&q=80' // camarão
+
+// Congelados
+const IMG_BURGER  = 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80' // hambúrguer
+const IMG_NUGGETS = 'https://images.unsplash.com/photo-1562802378-063ec186a863?w=600&q=80'   // nuggets
+
+export const products: Product[] = [
+  // ── BOVINOS — Carne sem osso ──────────────────────────────────────────
+  {
+    id: 'acem',
+    name: 'Acém',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte dianteiro macio, excelente para ensopados, carne moída e assados longos.',
+    uses: ['Ensopado', 'Carne moída', 'Assado', 'Food service'],
+    image: IMG_BEEF_RAW,
+  },
+  {
+    id: 'capa-file',
+    name: 'Capa de Filé',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte saboroso com boa textura, muito versátil para churrasco e assados.',
+    uses: ['Churrasco', 'Assado', 'Grelhado'],
+    image: IMG_STEAK_HERBS,
+  },
+  {
+    id: 'carne-moida',
+    name: 'Carne Moída',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Prática e versátil, ideal para preparações rápidas em food service e varejo.',
+    uses: ['Food service', 'Varejo', 'Restaurante', 'Cozinha industrial'],
+    image: IMG_GROUND_BEEF,
+  },
+  {
+    id: 'cha-coxao-mole',
+    name: 'Chã / Coxão Mole',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte traseiro macio, ideal para assados, bife e carne recheada.',
+    uses: ['Assado', 'Bife', 'Carne recheada', 'Food service'],
+    image: IMG_STEAK_BBQ,
+  },
+  {
+    id: 'cupim',
+    name: 'Cupim',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte com gordura entremeada, sabor marcante e suculência única no churrasco.',
+    uses: ['Churrasco', 'Assado lento', 'Food service'],
+    image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80',
+    featured: true,
+  },
+  {
+    id: 'fralda',
+    name: 'Fralda',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte com fibras longas e sabor intenso, perfeita para churrasco e assados.',
+    uses: ['Churrasco', 'Assado', 'Grelhado'],
+    image: IMG_BEEF_CUT,
+  },
+  {
+    id: 'lagarto',
+    name: 'Lagarto',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte traseiro de fibras longas, excelente para rosbife e carne recheada.',
+    uses: ['Rosbife', 'Carne recheada', 'Assado', 'Food service'],
+    image: IMG_STEAK_HERBS,
+  },
+  {
+    id: 'musculo',
+    name: 'Músculo',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte de cozimento lento com sabor profundo, ideal para caldos e ensopados.',
+    uses: ['Caldo', 'Ensopado', 'Cozido', 'Food service'],
+    image: IMG_BEEF_RAW,
+  },
+  {
+    id: 'paleta',
+    name: 'Paleta',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte dianteiro versátil, ótimo para ensopados, assados e preparo em panela.',
+    uses: ['Ensopado', 'Assado', 'Panela', 'Food service'],
+    image: IMG_STEAK_BBQ,
+  },
+  {
+    id: 'patinho',
+    name: 'Patinho',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte magro e macio, ideal para bifes, carne moída e escalopes.',
+    uses: ['Bife', 'Carne moída', 'Escalope', 'Food service'],
+    image: IMG_BEEF_CUT,
+  },
+  {
+    id: 'peito',
+    name: 'Peito',
+    category: 'bovinos',
+    subcategory: 'carne-sem-osso',
+    description: 'Corte com boa quantidade de colágeno, excelente para caldos e cozidos longos.',
+    uses: ['Caldo', 'Cozido', 'Ensopado', 'Food service'],
+    image: IMG_BEEF_RAW,
+  },
+
+  // ── BOVINOS — Cortes nobres ───────────────────────────────────────────
+  {
+    id: 'file-mignon',
+    name: 'Filé Mignon',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'O mais macio dos cortes bovinos, ideal para medallions, escalopes e pratos premium.',
+    uses: ['Grelhado', 'Assado', 'Restaurante', 'Food service premium'],
+    image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80',
+    featured: true,
+  },
+  {
+    id: 'picanha-a',
+    name: 'Picanha A',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'Corte nobre com capa de gordura, símbolo do churrasco brasileiro. Categoria A.',
+    uses: ['Churrasco', 'Grelhado', 'Assado'],
+    image: 'https://images.unsplash.com/photo-1448907503123-67254d59ca4f?w=600&q=80',
+    featured: true,
+  },
+  {
+    id: 'picanha-b',
+    name: 'Picanha B',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'Picanha com excelente custo-benefício, mantendo a suculência e o sabor característico.',
+    uses: ['Churrasco', 'Grelhado', 'Varejo'],
+    image: IMG_STEAK_GRILLED,
+  },
+  {
+    id: 'picanha-grill',
+    name: 'Picanha Grill',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'Picanha preparada especialmente para grelha, pronta para o forno ou churrasco.',
+    uses: ['Churrasco', 'Grelha', 'Restaurante'],
+    image: IMG_STEAK_GRILLED,
+  },
+  {
+    id: 'alcatra',
+    name: 'Alcatra',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'Corte nobre, macio e saboroso. Perfeito para bifes e churrascos.',
+    uses: ['Churrasco', 'Bife', 'Grelhado', 'Restaurante'],
+    image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80',
+    featured: true,
+  },
+  {
+    id: 'contra-file',
+    name: 'Contra Filé',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'Corte nobre de sabor intenso, ideal para bifes altos e churrasco.',
+    uses: ['Churrasco', 'Bife', 'Grelhado'],
+    image: IMG_STEAK_HERBS,
+  },
+  {
+    id: 'miolo-alcatra',
+    name: 'Miolo de Alcatra',
+    category: 'bovinos',
+    subcategory: 'cortes-nobres',
+    description: 'Parte central da alcatra, muito macia e suculenta, ideal para bifes especiais.',
+    uses: ['Bife', 'Grelhado', 'Restaurante premium'],
+    image: IMG_STEAK_NOBLE,
+  },
+
+  // ── BOVINOS — Carne com osso e costelas ──────────────────────────────
+  {
+    id: 'costela-janela',
+    name: 'Costela Janela',
+    category: 'bovinos',
+    subcategory: 'carne-com-osso',
+    description: 'Costela com formato característico em janela, suculenta e muito saborosa na brasa.',
+    uses: ['Churrasco', 'Assado lento', 'Defumado'],
+    image: IMG_RIBS_GRILL,
+    featured: true,
+  },
+  {
+    id: 'costela-minga',
+    name: 'Costela Minga',
+    category: 'bovinos',
+    subcategory: 'carne-com-osso',
+    description: 'Costela dianteira com muita carne entremeada, perfeita para churrasco e ensopado.',
+    uses: ['Churrasco', 'Ensopado', 'Assado'],
+    image: IMG_RIBS_ROASTED,
+  },
+  {
+    id: 'costela-ripa',
+    name: 'Costela Ripa',
+    category: 'bovinos',
+    subcategory: 'carne-com-osso',
+    description: 'Costela fina e comprida, excelente para churrasco e preparo na churrasqueira.',
+    uses: ['Churrasco', 'Grelhado'],
+    image: IMG_RIBS_GRILL,
+  },
+  {
+    id: 'costela-ripa-dianteiro',
+    name: 'Costela Ripa Dianteiro',
+    category: 'bovinos',
+    subcategory: 'carne-com-osso',
+    description: 'Costela da parte dianteira com sabor mais suave e fibras macias.',
+    uses: ['Churrasco', 'Assado', 'Cozido'],
+    image: IMG_RIBS_ROASTED,
+  },
+  {
+    id: 'costela-ripa-traseiro',
+    name: 'Costela Ripa Traseiro',
+    category: 'bovinos',
+    subcategory: 'carne-com-osso',
+    description: 'Costela traseira com mais gordura e sabor acentuado no churrasco.',
+    uses: ['Churrasco', 'Defumado', 'Assado lento'],
+    image: IMG_RIBS_GRILL,
+  },
+
+  // ── BOVINOS — Miúdos ─────────────────────────────────────────────────
+  {
+    id: 'bucho',
+    name: 'Bucho',
+    category: 'bovinos',
+    subcategory: 'miudos',
+    description: 'Estômago bovino, muito apreciado em caldos, dobradinha e pratos tradicionais.',
+    uses: ['Dobradinha', 'Caldo', 'Cozido'],
+    image: IMG_OFFAL,
+  },
+  {
+    id: 'coracao-bovino',
+    name: 'Coração',
+    category: 'bovinos',
+    subcategory: 'miudos',
+    description: 'Corte muito apreciado no churrasco brasileiro, com sabor único e textura firme.',
+    uses: ['Churrasco', 'Grelhado', 'Varejo'],
+    image: IMG_OFFAL,
+  },
+  {
+    id: 'figado-bovino',
+    name: 'Fígado',
+    category: 'bovinos',
+    subcategory: 'miudos',
+    description: 'Rico em nutrientes, ideal para fritos, ensopados e pratos tradicionais.',
+    uses: ['Frito', 'Ensopado', 'Food service', 'Varejo'],
+    image: IMG_OFFAL,
+  },
+  {
+    id: 'lingua',
+    name: 'Língua',
+    category: 'bovinos',
+    subcategory: 'miudos',
+    description: 'Corte nobre entre os miúdos, textura suave e sabor marcante após cozimento lento.',
+    uses: ['Cozido', 'Assado', 'Food service'],
+    image: IMG_OFFAL,
+  },
+  {
+    id: 'mocoto',
+    name: 'Mocotó',
+    category: 'bovinos',
+    subcategory: 'miudos',
+    description: 'Pé bovino rico em colágeno, base para caldos nutritivos e pratos típicos.',
+    uses: ['Caldo', 'Cozido', 'Restaurante'],
+    image: IMG_OFFAL,
+  },
+  {
+    id: 'rabada',
+    name: 'Rabada',
+    category: 'bovinos',
+    subcategory: 'miudos',
+    description: 'Rabo bovino com carne gelatinosa e sabor intenso, clássico da culinária brasileira.',
+    uses: ['Cozido', 'Ensopado', 'Restaurante'],
+    image: IMG_OFFAL,
+  },
+
+  // ── BOVINOS — Charques ───────────────────────────────────────────────
+  {
+    id: 'charque-dianteiro',
+    name: 'Charque Dianteiro',
+    category: 'bovinos',
+    subcategory: 'charques',
+    description: 'Charque da parte dianteira, sabor marcante e textura firme após dessalgue.',
+    uses: ['Cozido', 'Feijão', 'Varejo', 'Food service'],
+    image: IMG_JERKY,
+  },
+  {
+    id: 'charque-lagarto',
+    name: 'Charque Lagarto',
+    category: 'bovinos',
+    subcategory: 'charques',
+    description: 'Charque do lagarto, corte mais nobre na linha de charques com textura diferenciada.',
+    uses: ['Cozido', 'Assado', 'Varejo'],
+    image: IMG_JERKY,
+  },
+  {
+    id: 'charque-ponta-agulha',
+    name: 'Charque Ponta de Agulha',
+    category: 'bovinos',
+    subcategory: 'charques',
+    description: 'Charque do corte ponta de agulha, sabor acentuado e muito apreciado no sul do Brasil.',
+    uses: ['Churrasco', 'Cozido', 'Varejo'],
+    image: IMG_JERKY,
+  },
+  {
+    id: 'charque-traseiro',
+    name: 'Charque Traseiro',
+    category: 'bovinos',
+    subcategory: 'charques',
+    description: 'Charque da parte traseira, mais macio e com menor teor de gordura.',
+    uses: ['Cozido', 'Feijão', 'Varejo', 'Food service'],
+    image: IMG_JERKY,
+  },
+
+  // ── BOVINOS — Cortes especiais ───────────────────────────────────────
+  {
+    id: 'alcatra-completa-grill',
+    name: 'Alcatra Completa Grill',
+    category: 'bovinos',
+    subcategory: 'cortes-especiais',
+    description: 'Alcatra inteira preparada para grelha, combinando picanha, baby beef e maminha.',
+    uses: ['Churrasco premium', 'Restaurante', 'Eventos'],
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80',
+    featured: true,
+  },
+  {
+    id: 'assado-de-tiras',
+    name: 'Assado de Tiras',
+    category: 'bovinos',
+    subcategory: 'cortes-especiais',
+    description: 'Costela fatiada em tiras, clássico do churrasco gaúcho, sabor inconfundível.',
+    uses: ['Churrasco', 'Assado'],
+    image: IMG_RIBS_GRILL,
+  },
+  {
+    id: 'chorizo',
+    name: 'Chorizo',
+    category: 'bovinos',
+    subcategory: 'cortes-especiais',
+    description: 'Corte premium do contra filé, com fatiamento alto e capa de gordura generosa.',
+    uses: ['Churrasco', 'Grelhado', 'Restaurante premium'],
+    image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80',
+    featured: true,
+  },
+  {
+    id: 'contra-file-grill',
+    name: 'Contra Filé s/Noix Grill',
+    category: 'bovinos',
+    subcategory: 'cortes-especiais',
+    description: 'Contra filé sem noix, preparado para grelha com corte e acabamento premium.',
+    uses: ['Grelha', 'Churrasco', 'Restaurante'],
+    image: IMG_STEAK_GRILLED,
+  },
+  {
+    id: 'cupim-grill',
+    name: 'Cupim Grill',
+    category: 'bovinos',
+    subcategory: 'cortes-especiais',
+    description: 'Cupim preparado especialmente para grelha, com corte e limpeza especializados.',
+    uses: ['Churrasco', 'Grelha', 'Restaurante'],
+    image: IMG_STEAK_GRILLED,
+  },
+  {
+    id: 'file-costela-ancho',
+    name: 'Filé de Costela / Ancho',
+    category: 'bovinos',
+    subcategory: 'cortes-especiais',
+    description: 'Corte argentino premium com marmoreio perfeito, ideal para grelha e churrasco.',
+    uses: ['Churrasco', 'Grelha', 'Restaurante premium'],
+    image: 'https://images.unsplash.com/photo-1611599538835-b52a4d5e2834?w=600&q=80',
+    featured: true,
+  },
+
+  // ── AVES ─────────────────────────────────────────────────────────────
+  {
+    id: 'asa-frango',
+    name: 'Asa',
+    category: 'aves',
+    description: 'Asa de frango versátil, ótima para frituras, churrasco e como petisco.',
+    uses: ['Frito', 'Churrasco', 'Petisco', 'Food service'],
+    image: IMG_CHICKEN_WHOLE,
+  },
+  {
+    id: 'coracao-frango',
+    name: 'Coração de Frango',
+    category: 'aves',
+    description: 'Clássico do churrasco, pequeno e saboroso, apreciado em todo o Brasil.',
+    uses: ['Churrasco', 'Grelhado', 'Varejo'],
+    image: IMG_CHICKEN_PIECES,
+    featured: true,
+  },
+  {
+    id: 'coxa-com-dorso',
+    name: 'Coxa com Dorso',
+    category: 'aves',
+    description: 'Coxa de frango com dorso, peça inteira ideal para frituras e preparos completos.',
+    uses: ['Frito', 'Assado', 'Food service'],
+    image: IMG_CHICKEN_DARK,
+  },
+  {
+    id: 'coxa-sem-dorso',
+    name: 'Coxa sem Dorso',
+    category: 'aves',
+    description: 'Coxa de frango limpa, macia e suculenta, ideal para churrasco e assados.',
+    uses: ['Churrasco', 'Assado', 'Food service', 'Varejo'],
+    image: IMG_CHICKEN_DARK,
+    featured: true,
+  },
+  {
+    id: 'drumet',
+    name: 'Drumet',
+    category: 'aves',
+    description: 'Coxinha da asa preparada para petisco, perfeita para frituras e eventos.',
+    uses: ['Petisco', 'Frito', 'Eventos', 'Food service'],
+    image: IMG_CHICKEN_WHOLE,
+  },
+  {
+    id: 'file-coxa-com-pele',
+    name: 'Filé de Coxa com Pele',
+    category: 'aves',
+    description: 'Filé de coxa com pele, suculento e saboroso para grelha e assado.',
+    uses: ['Grelhado', 'Assado', 'Restaurante'],
+    image: IMG_CHICKEN_DARK,
+  },
+  {
+    id: 'file-frango',
+    name: 'Filé de Frango',
+    category: 'aves',
+    description: 'Peito de frango sem osso e sem pele, magro e versátil. Base do food service.',
+    uses: ['Grelhado', 'Assado', 'Food service', 'Cozinha industrial'],
+    image: IMG_CHICKEN_BREAST,
+    featured: true,
+  },
+  {
+    id: 'filezinho-sassami',
+    name: 'Filezinho Sassami',
+    category: 'aves',
+    description: 'Miolo do filé de frango, extra macio e magro, muito utilizado em dietas e restaurantes.',
+    uses: ['Grelhado', 'Cozido', 'Restaurante', 'Food service'],
+    image: IMG_CHICKEN_BREAST,
+  },
+  {
+    id: 'frango-passarinho',
+    name: 'Frango a Passarinho',
+    category: 'aves',
+    description: 'Frango cortado em pedaços pequenos, tradição do boteco e food service brasileiro.',
+    uses: ['Frito', 'Petisco', 'Restaurante', 'Varejo'],
+    image: IMG_CHICKEN_PIECES,
+  },
+  {
+    id: 'frango-inteiro',
+    name: 'Frango Inteiro',
+    category: 'aves',
+    description: 'Frango inteiro para assados, churrascos e preparações completas em food service.',
+    uses: ['Assado', 'Churrasco', 'Food service', 'Varejo'],
+    image: IMG_CHICKEN_WHOLE,
+  },
+  {
+    id: 'figado-frango',
+    name: 'Fígado de Frango',
+    category: 'aves',
+    description: 'Rico em ferro e sabor, muito utilizado em patês, fritadas e pratos tradicionais.',
+    uses: ['Frito', 'Patê', 'Restaurante', 'Varejo'],
+    image: IMG_CHICKEN_PIECES,
+  },
+  {
+    id: 'moela',
+    name: 'Moela',
+    category: 'aves',
+    description: 'Moela de frango crocante por fora e macia por dentro, petisco clássico brasileiro.',
+    uses: ['Frito', 'Petisco', 'Varejo', 'Food service'],
+    image: IMG_CHICKEN_PIECES,
+  },
+  {
+    id: 'peito-frango',
+    name: 'Peito de Frango',
+    category: 'aves',
+    description: 'Peito inteiro, ideal para cortes, assados e preparações de grande escala.',
+    uses: ['Assado', 'Grelhado', 'Food service', 'Cozinha industrial'],
+    image: IMG_CHICKEN_BREAST,
+    featured: true,
+  },
+  {
+    id: 'pescoco-frango',
+    name: 'Pescoço',
+    category: 'aves',
+    description: 'Pescoço de frango para caldos nutritivos e sopas de grande sabor.',
+    uses: ['Caldo', 'Sopa', 'Food service'],
+    image: IMG_CHICKEN_PIECES,
+  },
+  {
+    id: 'pe-frango',
+    name: 'Pé de Frango',
+    category: 'aves',
+    description: 'Rico em colágeno, muito apreciado em caldos e pratos asiáticos.',
+    uses: ['Caldo', 'Cozido', 'Varejo'],
+    image: IMG_CHICKEN_PIECES,
+  },
+  {
+    id: 'sambiquira',
+    name: 'Sambiquira',
+    category: 'aves',
+    description: 'Parte traseira do frango, muito saborosa, ideal para churrasco e assados.',
+    uses: ['Churrasco', 'Assado', 'Varejo'],
+    image: IMG_CHICKEN_DARK,
+  },
+  {
+    id: 'sobrecoxa',
+    name: 'Sobrecoxa',
+    category: 'aves',
+    description: 'Sobrecoxa suculenta, uma das partes mais saborosas do frango.',
+    uses: ['Churrasco', 'Assado', 'Grelhado', 'Food service'],
+    image: IMG_CHICKEN_DARK,
+    featured: true,
+  },
+  {
+    id: 'tulipa',
+    name: 'Tulipa',
+    category: 'aves',
+    description: 'Coxinha da asa com a ponta da asa, petisco clássico e muito versátil.',
+    uses: ['Petisco', 'Frito', 'Grelhado', 'Food service'],
+    image: IMG_CHICKEN_WHOLE,
+  },
+
+  // ── SUÍNOS ───────────────────────────────────────────────────────────
+  {
+    id: 'alcatra-suina',
+    name: 'Alcatra Suína',
+    category: 'suinos',
+    description: 'Corte traseiro do suíno, macio e saboroso, ideal para assados e churrasco.',
+    uses: ['Assado', 'Churrasco', 'Grelhado'],
+    image: IMG_PORK_RAW,
+  },
+  {
+    id: 'barriga-manta',
+    name: 'Barriga Manta',
+    category: 'suinos',
+    description: 'Barriga de porco em manta, base para bacon, panceta e preparações especiais.',
+    uses: ['Bacon', 'Panceta', 'Assado', 'Food service'],
+    image: IMG_HAM_CURED,
+  },
+  {
+    id: 'barriga-rolo',
+    name: 'Barriga Rolo',
+    category: 'suinos',
+    description: 'Barriga enrolada, perfeita para assados especiais e preparações diferenciadas.',
+    uses: ['Assado', 'Defumado', 'Food service'],
+    image: IMG_HAM_CURED,
+  },
+  {
+    id: 'bisteca',
+    name: 'Bisteca',
+    category: 'suinos',
+    description: 'Costeleta suína com osso, sabor acentuado, perfeita para grelha e churrascos.',
+    uses: ['Churrasco', 'Grelhado', 'Assado', 'Varejo'],
+    image: IMG_PORK_CHOP,
+    featured: true,
+  },
+  {
+    id: 'carre',
+    name: 'Carré',
+    category: 'suinos',
+    description: 'Lombo com osso, elegante e saboroso, ideal para assados e apresentações especiais.',
+    uses: ['Assado', 'Restaurante', 'Eventos'],
+    image: IMG_PORK_CHOP,
+  },
+  {
+    id: 'costela-suina',
+    name: 'Costela Suína',
+    category: 'suinos',
+    description: 'Costela de porco suculenta com sabor marcante, ideal para churrasco lento.',
+    uses: ['Churrasco', 'Assado lento', 'Food service'],
+    image: IMG_PORK_CHOP,
+    featured: true,
+  },
+  {
+    id: 'copa-lombo',
+    name: 'Copa Lombo',
+    category: 'suinos',
+    description: 'Corte entre o pescoço e o lombo, marmoreado e muito saboroso no churrasco.',
+    uses: ['Churrasco', 'Grelhado', 'Assado'],
+    image: IMG_PORK_RAW,
+  },
+  {
+    id: 'file-suino',
+    name: 'Filé Suíno',
+    category: 'suinos',
+    description: 'O corte mais macio do suíno, magro e delicado, ideal para pratos premium.',
+    uses: ['Grelhado', 'Assado', 'Restaurante', 'Food service'],
+    image: IMG_PORK_LOIN,
+    featured: true,
+  },
+  {
+    id: 'pernil',
+    name: 'Pernil',
+    category: 'suinos',
+    description: 'Perna traseira do suíno, sabor tradicional e indispensável em festas e eventos.',
+    uses: ['Assado', 'Eventos', 'Varejo', 'Food service'],
+    image: IMG_PORK_ROAST,
+    featured: true,
+  },
+  {
+    id: 'paleta-suina',
+    name: 'Paleta Suína',
+    category: 'suinos',
+    description: 'Perna dianteira do suíno, saborosa e ideal para assados lentos e defumados.',
+    uses: ['Assado', 'Defumado', 'Food service'],
+    image: IMG_PORK_ROAST,
+  },
+  {
+    id: 'panceta',
+    name: 'Panceta',
+    category: 'suinos',
+    description: 'Barriga curada com sabor intenso, muito utilizada em preparações italianas e gourmet.',
+    uses: ['Churrasco', 'Food service', 'Gourmet'],
+    image: IMG_HAM_CURED,
+  },
+  {
+    id: 'lombo-suino',
+    name: 'Lombo Suíno',
+    category: 'suinos',
+    description: 'Corte nobre, magro e versátil, presença garantida em mesas e restaurantes.',
+    uses: ['Assado', 'Grelhado', 'Food service', 'Varejo'],
+    image: IMG_PORK_LOIN,
+  },
+
+  // ── EMBUTIDOS ─────────────────────────────────────────────────────────
+  {
+    id: 'linguica-calabresa',
+    name: 'Linguiça Calabresa',
+    category: 'embutidos',
+    description: 'Linguiça defumada com temperos especiais, presença obrigatória no churrasco brasileiro.',
+    uses: ['Churrasco', 'Varejo', 'Food service'],
+    image: IMG_SAUSAGE_RED,
+    featured: true,
+  },
+  {
+    id: 'linguica-toscana',
+    name: 'Linguiça Toscana',
+    category: 'embutidos',
+    description: 'Linguiça fresca com blend de temperos, suculenta na grelha e no forno.',
+    uses: ['Churrasco', 'Grelhado', 'Varejo'],
+    image: IMG_SAUSAGE_TRAY,
+    featured: true,
+  },
+  {
+    id: 'salsicha',
+    name: 'Salsicha',
+    category: 'embutidos',
+    description: 'Salsicha de alta qualidade para hot-dog, lanches e preparações rápidas.',
+    uses: ['Lanche', 'Hot-dog', 'Food service', 'Varejo'],
+    image: IMG_SAUSAGE_PLATE,
+  },
+  {
+    id: 'mortadela',
+    name: 'Mortadela',
+    category: 'embutidos',
+    description: 'Mortadela fatiada para frios, lanches e preparações de food service.',
+    uses: ['Frios', 'Lanche', 'Food service', 'Varejo'],
+    image: IMG_HAM_CURED,
+  },
+  {
+    id: 'presunto',
+    name: 'Presunto',
+    category: 'embutidos',
+    description: 'Presunto cozido de alta qualidade para frios, sanduíches e pizzas.',
+    uses: ['Frios', 'Sanduíche', 'Pizza', 'Food service', 'Varejo'],
+    image: IMG_HAM_CURED,
+  },
+
+  // ── CONGELADOS ────────────────────────────────────────────────────────
+  {
+    id: 'hamburguer',
+    name: 'Hambúrguer',
+    category: 'congelados',
+    description: 'Hambúrguer bovino de alta qualidade para lanchonetes, restaurantes e varejo.',
+    uses: ['Lanche', 'Food service', 'Varejo', 'Restaurante'],
+    image: IMG_BURGER,
+    featured: true,
+  },
+  {
+    id: 'nuggets',
+    name: 'Nuggets',
+    category: 'congelados',
+    description: 'Nuggets de frango crocante, muito consumidos em food service e varejo.',
+    uses: ['Food service', 'Varejo', 'Cozinha industrial'],
+    image: IMG_NUGGETS,
+  },
+  {
+    id: 'empanados',
+    name: 'Empanados',
+    category: 'congelados',
+    description: 'Empanados de frango versáteis para frituras rápidas e food service.',
+    uses: ['Frito', 'Food service', 'Varejo'],
+    image: IMG_NUGGETS,
+  },
+  {
+    id: 'porcoes-congeladas',
+    name: 'Porções Congeladas',
+    category: 'congelados',
+    description: 'Variedade de porções congeladas de frango e bovinos para food service.',
+    uses: ['Food service', 'Cozinha industrial', 'Restaurante'],
+    image: IMG_NUGGETS,
+  },
+
+  // ── PESCADOS ──────────────────────────────────────────────────────────
+  {
+    id: 'tilapia',
+    name: 'Tilápia',
+    category: 'pescados',
+    description: 'Filé de tilápia fresco ou congelado, versátil e muito consumido no Brasil.',
+    uses: ['Grelhado', 'Assado', 'Food service', 'Varejo'],
+    image: IMG_FISH_FILLET,
+    featured: true,
+  },
+  {
+    id: 'merluza',
+    name: 'Merluza',
+    category: 'pescados',
+    description: 'Merluza de sabor suave e textura firme, ótima para fritos e assados.',
+    uses: ['Frito', 'Assado', 'Food service', 'Varejo'],
+    image: IMG_FISH_WHITE,
+  },
+  {
+    id: 'sardinha',
+    name: 'Sardinha',
+    category: 'pescados',
+    description: 'Sardinha fresca ou congelada, muito apreciada em churrascos e refeições populares.',
+    uses: ['Churrasco', 'Grelhado', 'Varejo', 'Food service'],
+    image: IMG_FISH_WHOLE,
+  },
+  {
+    id: 'camarao',
+    name: 'Camarão',
+    category: 'pescados',
+    description: 'Camarão limpo e processado para restaurantes, lanchonetes e varejo.',
+    uses: ['Restaurante', 'Food service', 'Varejo', 'Eventos'],
+    image: IMG_SHRIMP,
+    featured: true,
+  },
+  {
+    id: 'bacalhau',
+    name: 'Bacalhau',
+    category: 'pescados',
+    description: 'Bacalhau dessalgado de qualidade superior para restaurantes e datas especiais.',
+    uses: ['Restaurante', 'Food service', 'Varejo', 'Eventos'],
+    image: IMG_FISH_WHITE,
+    featured: true,
+  },
+];
+
+export const categoryLabels: Record<string, string> = {
+  bovinos: 'Bovinos',
+  aves: 'Aves',
+  suinos: 'Suínos',
+  embutidos: 'Embutidos',
+  congelados: 'Congelados',
+  pescados: 'Pescados',
+};
+
+export const subcategoryLabels: Record<string, string> = {
+  'carne-sem-osso': 'Carne sem Osso',
+  'cortes-nobres': 'Cortes Nobres',
+  'carne-com-osso': 'Carne com Osso e Costelas',
+  'miudos': 'Miúdos',
+  'charques': 'Charques',
+  'cortes-especiais': 'Cortes Especiais',
+};
+
+export const bovinoSubcategories = [
+  { value: 'todos', label: 'Todos' },
+  { value: 'carne-sem-osso', label: 'Carne sem Osso' },
+  { value: 'cortes-nobres', label: 'Cortes Nobres' },
+  { value: 'carne-com-osso', label: 'Com Osso e Costelas' },
+  { value: 'miudos', label: 'Miúdos' },
+  { value: 'charques', label: 'Charques' },
+  { value: 'cortes-especiais', label: 'Cortes Especiais' },
+];
