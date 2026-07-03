@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X, Phone, ChevronDown, Headset, Sparkles, Crown } from 'lucide-react'
+import { Menu, X, Phone, ChevronDown, Headset, Sparkles } from 'lucide-react'
 
 const navLinks = [
   { to: '/', label: 'Início' },
@@ -61,20 +61,13 @@ export default function Header() {
 
       {/* Main nav */}
       <nav className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo — lockup recriado em código (coroa + tipografia), identidade preservada */}
-        <Link to="/" className="flex items-center gap-2 select-none shrink-0" aria-label="Royal Alimentos — página inicial">
-          <Crown size={28} strokeWidth={2} className="text-verde-600 shrink-0" />
-          <span className="flex flex-col leading-none">
-            <span
-              className="text-vinho-700 font-bold text-xl tracking-tight leading-none whitespace-nowrap"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            >
-              ROYAL
-            </span>
-            <span className="text-verde-600 font-semibold text-[10px] tracking-[0.22em] uppercase leading-none mt-1 whitespace-nowrap">
-              Alimentos
-            </span>
-          </span>
+        {/* Logo */}
+        <Link to="/" className="flex items-center select-none shrink-0">
+          <img
+            src="/logo.png"
+            alt="Royal Alimentos"
+            className="h-14 w-auto"
+          />
         </Link>
 
         {/* Desktop nav */}
