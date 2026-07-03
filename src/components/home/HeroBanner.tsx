@@ -5,7 +5,7 @@ import { calcYearsInBusiness } from '../../utils/yearsCalc'
 import HeroAuthorityCards from './HeroAuthorityCards'
 
 /** Ponto de troca da imagem de fundo do Hero — trocar a URL abaixo para atualizar. */
-const HERO_BG_IMAGE = 'https://images.unsplash.com/photo-1558030006-450675393462?w=1920&q=85'
+const HERO_BG_IMAGE = '/hero-bg.jpg'
 
 const WA = 'https://wa.me/5521996643765'
 
